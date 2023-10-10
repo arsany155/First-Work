@@ -81,8 +81,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/css/navigation';
-  import 'swiper/css/pagination';
-  import 'swiper/css/scrollbar';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 
 export default {
@@ -126,7 +126,3 @@ export default {
 };
 
 </script>
-
-<style>
-
-</style>

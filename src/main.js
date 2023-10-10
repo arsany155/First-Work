@@ -6,4 +6,7 @@ import 'tailwindcss/components.css'
 import 'tailwindcss/utilities.css'
 
 
-createApp(App).use(router).mount('#app')
+const app= createApp(App)
+
+app.use(router)
+app.mount('#app')

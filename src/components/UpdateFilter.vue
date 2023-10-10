@@ -12,26 +12,58 @@
             </div>
         </aside>
 
-        <aside class="lg:hidden">
-            <div class="flex text-xl mt-7 gap-x-3 md:gap-x-5 px-3 overflow-hidden">
-                <buttom class="c rounded-sm" @click="UpdateFilter('فن')" >فن</buttom>
-                <buttom class="c rounded-sm" @click="UpdateFilter('موسيقي')">موسيقي</buttom>
-                <buttom class="c rounded-sm" @click="UpdateFilter('لغة')">لغة</buttom>
-                <buttom class="c rounded-sm" @click="UpdateFilter('فلسفه')" >فلسفة</buttom>
-                <buttom class="c rounded-sm" @click="UpdateFilter('الأدب')">أدب</buttom>
-                <buttom class="c rounded-sm" @click="UpdateFilter('تاريخ')">تاريخ</buttom>
-                <buttom class="c rounded-sm" @click="UpdateFilter('الكل')">الكل</buttom>
-            </div>
-        </aside>
+
+            <swiper class="lg:hidden flex text-xl mt-7 px-2" :slides-per-view="3"
+                    :space-between="10"
+                    @swiper="onSwiper"
+                    @slideChange="onSlideChange">
+
+                    <swiper-slide class="c rounded-sm flex justify-center " @click="UpdateFilter('فن')" >فن</swiper-slide>
+
+                    <swiper-slide class="c rounded-sm flex justify-center " @click="UpdateFilter('موسيقي')">موسيقي</swiper-slide>
+
+                    <swiper-slide class="c rounded-sm flex justify-center " @click="UpdateFilter('لغة')">لغة</swiper-slide>
+
+                    <swiper-slide class="c rounded-sm flex justify-center " @click="UpdateFilter('فلسفه')" >فلسفة</swiper-slide>
+
+                    <swiper-slide class="c rounded-sm flex justify-center " @click="UpdateFilter('الأدب')">أدب</swiper-slide>
+
+                    <swiper-slide class="c rounded-sm flex justify-center " @click="UpdateFilter('تاريخ')">تاريخ</swiper-slide>
+
+                    <swiper-slide class="c rounded-sm flex justify-center " @click="UpdateFilter('الكل')">الكل</swiper-slide>
+            </swiper>
+
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
 export default {
+    
     name:'UpdateFilter',
     methods: {  
         UpdateFilter(by){
             this.$emit('filterchange' , by)
         }
+    },
+
+    components: {
+      Swiper,
+      SwiperSlide,
+    },
+    setup() {
+      const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+      };
+      return {
+        onSwiper,
+        onSlideChange,
+      };
     },
 }
 </script>

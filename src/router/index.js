@@ -13,6 +13,11 @@ import Login from '../views/Autentication/Login.vue'
 import ResetPassword from '../views/Autentication/ResetPassword.vue'
 import ForgetPassword from '../views/Autentication/ForgetPassword.vue'
 import OTP from '../views/Autentication/OTP.vue'
+import Dashboard from '../views/Dashboard.vue'
+import Add from '../views/Add.vue'
+import HomeDashboard from '../views/HomeDashboard.vue'
+import profile from '../views/profile.vue'
+import Tables from '../views/Tables.vue'
 
 const routes = [
   {
@@ -98,7 +103,40 @@ const routes = [
     path: '/OTP',
     name: 'OTP  ',
     component: OTP  
-  }
+  },
+
+  {
+    path: '/Dashboard',
+    name: 'Dashboard  ',
+    component: Dashboard,
+    children:[
+      {
+        path: '/HomeDashboard',
+        name: 'HomeDashboard  ',
+        component: HomeDashboard
+      },
+    
+      {
+        path: '/profile',
+        name: 'profile  ',
+        component: profile
+      },
+    
+      {
+        path: '/Tables',
+        name: 'Tables  ',
+        component: Tables,
+        children:[
+          {
+            path: '/Add',
+            name: 'Add  ',
+            component: Add
+          } 
+        ]
+      },
+    ]
+  },
+
   
   // {
   //   path: '/about',

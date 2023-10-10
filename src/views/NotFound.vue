@@ -7,10 +7,3 @@
                 </p>
         </div>
 </template>
-
-
-<style>
-/* .v{
-        background-color: #3498DB;
-} */
-</style>

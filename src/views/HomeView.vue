@@ -5,15 +5,15 @@
     <div dir="rtl">
         <router-link to="/search">
             <div class="flex lg:hidden py-2 mt-7 mx-5 w-auto md:w-5/6 md:mx-auto" style="background-color: #EEEEEE;" >
-                <img src="../assets/search.png" alt="" class="absolute pr-2"> 
-                <input type="text"  class="w-64 rounded-sm pr-10 outline-none " style="background-color: #EEEEEE;" placeholder="بحث">
+                <img src="../assets/search.png" alt="" class=" pr-2"> 
+                <input type="text"  class="w-[550px] rounded-sm pr-3 outline-none " style="background-color: #EEEEEE;" placeholder="بحث">
             </div>
         </router-link>
         
         
         <section class="flex flex-col-reverse lg:flex-row md:mx-5 lg:mx-16 md:mt-16 mt-7 md:gap-x-4 lg:gap-x-6">
         
-            <div v-if="ReadPosts.length > 0" class="flex lg:flex-col  lg:space-y-4 mx-4 lg:mx-0 gap-x-3 md:gap-x-0 mt-12 lg:-mt-0 xl:-mt-0 md:justify-around lg:justify-start ">
+            <div v-if="ReadPosts.length > 0" class="flex lg:flex-col  lg:space-y-4 mx-4 lg:mx-0 gap-x-3 md:gap-x-0 mt-12 lg:-mt-0 xl:-mt-0 md:justify-around ">
                 <div>
                     <router-link :to="{name:'artical' , params:{id : ReadPosts[0].id}}">
                         <img :src="ReadPosts[0].uri"  alt=""  class="x">
@@ -29,7 +29,7 @@
                         <p style="color: #383838;" class="text-sm font-medium mt-1">{{ ReadPosts[0].title }}</p>
                     </div>
                 </div>
-        
+
                 <div>
                     <router-link :to="{name:'artical' , params:{id : ReadPosts[1].id}}">
                         <img :src="ReadPosts[1].uri" alt="" class="xx">
@@ -48,9 +48,9 @@
             </div>
             
             <div class="hidden lg:flex border-r-2 md:-mt-7 lg:-mt-0 " style="height: 650px;"></div>
-        
+
             <div v-if="Posts.length > 0" class="flex flex-col md:-mt-7 lg:-mt-0 px-3">
-                <router-link :to="{name:'artical' , params:{id:Posts[0].id}}">
+                <router-link :to="{ name:'artical' , params: {id: Posts[0].id}}">
                     <img :src="Posts[0].uri" class="omo">
                 </router-link>
                 <div class="flex justify-between md:mt-2 text-base ">
@@ -75,7 +75,7 @@
             </div>
         </div> 
         
-                
+
         <swiper class="mx-3 mt-8" :slides-per-view="isMobile ? 2 : 4" :spaceBetween="20" :slidesPerGroup="1"  :modules="modules" @swiper="onSwiper"  @slideChange="onSlideChange" navigation>
         
             <swiper-slide v-for="Type in Types" :key="Type.id" class="relative">
@@ -108,7 +108,7 @@
         
                     <div class="space-y-3  lg:space-y-9">
                         <p class="text-lg md:text-2xl lg:text-4xl">{{ Posts[1].title }}</p>
-                        <p style="color: #38383880;" class="text-sm lg:text-base xl:text-lg pp">{{ Posts[1].body }}</p>
+                        <p style="color: #38383880;" class="text-sm lg:text-base xl:text-lg pp">{{ snippt1 }}</p>
                         <!-- <router-link :to="{name:'artical' , params:{id: Posts[1].id}}" style="color: #5165FD;" class="text-sm" >أقرأ المزيد</router-link>  -->
                     </div>
         
@@ -131,7 +131,7 @@
         
                     <div class="space-y-3  lg:space-y-9">
                         <p class="text-lg md:text-2xl lg:text-4xl">{{ Posts[2].title }}</p>
-                        <p style="color: #38383880;" class="text-sm lg:text-base xl:text-lg pp">{{ Posts[2].body }}</p>
+                        <p style="color: #38383880;" class="text-sm lg:text-base xl:text-lg pp">{{ snippt2 }}</p>
                         <!-- <router-link :to="{name:'artical' , params:{id: Posts[2].id}}" style="color: #5165FD;" class="text-sm" >أقرأ المزيد</router-link>  -->
                     </div>
         
@@ -143,11 +143,6 @@
                 </div> 
         
             </div>
-        
-            
-        
-        
-        
         
         </section>
         
@@ -200,7 +195,6 @@
                 </div>
             </div>
         
-        
         </section>
         
         
@@ -229,10 +223,9 @@ import Footer from '@/components/Footer.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation,  A11y } from 'swiper/modules';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+
 
 
 export default {
@@ -265,6 +258,17 @@ export default {
             isMobile: false,
         }   
     },
+
+    computed: {
+    snippt1() {
+        return this.Posts.length > 1 ? this.Posts[1].body.substring(0, 100) + '...' : '';
+    },
+    snippt2() {
+        return this.Posts.length > 1 ? this.Posts[2].body.substring(0, 100) + '...' : '';
+    }
+},
+
+
     mounted() {
         if (window.innerWidth < 768) {
         this.isMobile = true;
@@ -284,6 +288,7 @@ export default {
         .then(data =>this.Types = data )
         .catch(err => console.log(err));
     }, 
+
 }
 </script>
 
@@ -346,9 +351,6 @@ export default {
                     width: auto;
                 }
             }  
-
-
-            
             .color {
                 background:linear-gradient(90deg,#5367FF,#E553FF);
                 background-clip: text; 

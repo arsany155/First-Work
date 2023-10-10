@@ -1,8 +1,8 @@
 <template>
     <div dir="rtl">
-            <NavBar/>
+        <NavBar/>
 
-            <div class="bg-gradient-to-b v  w-full absolute " style="height: 2740px;"></div>
+        <div class="bg-gradient-to-b v  w-full absolute " style="height: 2740px;"></div>
 
         <div v-if="post">
             <div class="mt-8 lg:mt-32 relative">
@@ -15,7 +15,7 @@
                     <small style="color: #383838CC;">{{ post.createdby }}</small>
                 </div>
             </div>
-            
+
             <section class="mt-8 lg:mt-20 px-3 lg:px-0 relative">
                 <img :src="post.uri" alt="" class="mx-auto">
                 <!-- <p style="color: #383838;" class="lg:w-2/3 text-sm px-2 lg:text-lg mx-auto lg:px-8 mt-8 lg:mt-16 font-semibold"> القراءة هي نافذتنا إلى العالم، إنها رحلة سحرية تأخذنا في استكشاف أفكار الآخرين وتعلم ثقافات جديدة. في العالم العربي، يتمتع الكتاب والأدب بمكانة خاصة، حيث يتميزون بإبداعهم وقدرتهم على صياغة الكلمات بأناقة وجمال. ومن خلال هذا المقال، سنستكشف سحر القراءة في اكتشاف العالم العربي وأهميتها في بناء المعرفة وتعزيز الثقافة.</p> -->
@@ -26,7 +26,6 @@
                     </div>
                     <div class="border-b-2  mx-auto" style="color: #D9DBE9;"></div>
                 </div>
-            
             </section>
         </div>
 
@@ -129,14 +128,9 @@ import Footer from '@/components/Footer.vue'
         }
     },
     mounted() {
-    fetch('http://localhost:3000/TheNewestArticales')
+    fetch('http://localhost:3000/TheNewestArticales/' + this.id )
         .then(res => res.json())
-        .then(data => {
-            this.post = data;
-            return fetch('http://localhost:3000/TheMostReadArticales');
-        })
-        .then(res => res.json())
-        .then(data => this.ReadPost = data)
+        .then(data => this.post = data)
         .catch(err => console.log(err));
     }
 }

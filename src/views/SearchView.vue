@@ -2,6 +2,10 @@
         <NavBar/>
 
     <div dir="rtl">
+        <div class="flex lg:hidden py-2 mt-7 mx-5 w-auto md:w-5/6 md:mx-auto" style="background-color: #EEEEEE;" >
+                <img src="../assets/search.png" alt="" class=" pr-2"> 
+                <input type="text"  class="w-[550px] rounded-sm pr-3 outline-none " style="background-color: #EEEEEE;" placeholder="بحث">
+        </div>
         <section class="lg:flex lg:gap-9 xl:gap-32 md:px-7 xl:px-14 lg:mt-36">
             <UpdateFilter @filterchange="current =$event"/>
 
@@ -12,8 +16,8 @@
                     <p class="text-xl md:text-4xl" style="color: #383838"> نتائج البحث عن : قرائة</p>
                 </div>
 
-                <div v-if="Posts.length">
-                    <div v-for="post in filteredProjects" :key="post.id">
+                <div v-if="Posts.length" >
+                    <div v-for="post in filteredProjects" :key="post.id" >
                         <serachResult :post="post"/>
                     </div>
                 </div>
